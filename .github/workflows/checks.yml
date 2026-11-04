@@ -1,0 +1,28 @@
+name: Check examples
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  examples:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: npm ci --prefix node-sqlite
+      - run: npm ci --prefix react-fastapi
+      - run: npm run build --prefix react-fastapi
+      - name: Install Python examples
+        run: |
+          python -m venv react-fastapi/.venv
+          react-fastapi/.venv/bin/pip install -r react-fastapi/requirements.txt
+          python -m venv streamlit/.venv
+          streamlit/.venv/bin/pip install -r streamlit/requirements.txt
+      - run: node scripts/check.mjs
+      - run: streamlit/.venv/bin/python streamlit/check.py

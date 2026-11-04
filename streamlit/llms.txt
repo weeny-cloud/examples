@@ -1,0 +1,6 @@
+# Streamlit saved readings
+An interactive Streamlit dashboard. Start: sh run.sh, default port 8501.
+GET /_stcore/health is Streamlit's health endpoint. The browser uses WebSockets.
+SQLite readings are stored in WEENY_DATA_DIR/readings.db and survive redeployment.
+This demo has no app-level authentication; use a private Weeny exposure for personal data.
+requirements.txt pins the Python dependencies; create a release-local .venv to install them.

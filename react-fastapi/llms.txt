@@ -1,0 +1,11 @@
+# React and FastAPI persistent notes
+
+Purpose: save and list short notes with a Vite React frontend served by FastAPI.
+Build: npm ci && npm run build && python3 -m venv .venv && .venv/bin/pip install -r requirements.txt.
+Start: .venv/bin/uvicorn app:app --host 127.0.0.1 --port 8000.
+GET / serves the frontend. GET /api/notes returns [{id, text}].
+POST /api/notes accepts application/json {"text":"1–1000 characters"}; returns {id, text} with HTTP 201.
+Blank or oversized text returns HTTP 422. A saved note appears on subsequent reads.
+SQLite lives in WEENY_DATA_DIR/notes.sqlite and must survive redeploys/restarts.
+No app-level authentication. Use private Weeny exposure for this demonstration;
+allowed callers sign in through Weeny or use their Weeny private-app bearer token.

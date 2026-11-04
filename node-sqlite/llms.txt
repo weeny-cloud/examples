@@ -1,0 +1,7 @@
+# Express persistent notes
+Small Express 5.3.0 app with Node's built-in SQLite. Build: npm ci. Start: node server.mjs.
+Listens on loopback PORT (default 3000). GET / serves the note form; GET /health checks SQLite.
+GET /api/notes returns a JSON array; POST /api/notes accepts {"text":"1–1000 characters"}.
+Database: WEENY_DATA_DIR/app.db. Notes older than 30 days are removed hourly.
+No app-level authentication: expose privately with Weeny login for personal notes.
+node check.mjs BASE_URL creates a note; --read-only verifies the prior write after redeploy.
