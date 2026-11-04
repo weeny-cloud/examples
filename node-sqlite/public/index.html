@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Express persistent notes</title>
+<main>
+  <h1>Express persistent notes</h1>
+  <p>Add a note, deploy again, and check it survives.</p>
+  <form><label for="note">Note</label> <input id="note" required maxlength="1000"> <button>Save note</button></form>
+  <p id="status" role="status"></p>
+  <ul id="notes"></ul>
+</main>
+<script type="module" src="/app.js"></script>
+</html>
